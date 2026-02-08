@@ -1,0 +1,66 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <stack>
+#include <queue>
+#include <set>
+#include <unordered_set>
+#include <unordered_map>
+#include <tuple>
+#include <map>
+#include <string>
+#include <cmath>
+#define ll long long
+#define weight first
+#define val second
+#define INF 987654321987654321
+#define MOD 10
+#define MAX 100001
+//this is not for development, but for PS.
+//this line is super critical for development.
+
+using namespace std;
+
+int n, m;
+vector<bool> visited;
+vector<int> v;
+void fastIO() {
+    std::ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+}
+
+void recur(int cur_n, int cur_m, string stk) {
+    if (cur_m == m) {
+        cout << stk << '\n';
+        return;
+    }
+
+    visited[cur_n] = true;
+    for (int i=cur_n; i<=n; i++) {
+        if (i != cur_n && !visited[i]) {
+            recur(i, cur_m+1, stk + to_string(v[i-1]) + ' ');
+        }
+    }
+    visited[cur_n] = false;
+}
+
+
+void result() {
+    cin>>n>>m;
+    visited.resize(n+1);
+    v.resize(n);
+    for (int i=0; i<n; i++) {
+        cin>>v[i];
+    }
+    sort(v.begin(), v.end());
+    recur(0, 0, "");
+}
+
+
+int main(){
+    fastIO();
+    result();
+    return 0;
+}
+
