@@ -24,7 +24,7 @@ public class Main{
         }
 
         sb.append(max+"\n");
-        sb.append(index+1);
+        sb.append(index + 1);
         System.out.println(sb);
     }
 }
